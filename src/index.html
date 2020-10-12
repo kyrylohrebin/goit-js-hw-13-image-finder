@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Picture Search</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <form class="search-form js-search-form">
+        <label for="searchQuery" class="label"></label>
+        <input
+          type="text"
+          name="query"
+          id="searchQuery"
+          placeholder="What pic do you want to find?"
+          autocomplete="off"
+          class="search-form__input"
+        />
+        <button class="search-form__button js-search-form__button">Search</button>
+      </form>
+
+      <ul class="pictures_list js-pictures"></ul>
+
+      <button type="button" class="load-button" data-action="load-more">
+        Load more
+      </button>
+    </div>
+  </body>
+</html>
