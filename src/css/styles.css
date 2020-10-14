@@ -18,3 +18,54 @@ body {
   width: auto;
   height: auto;
 }
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button.is-hidden {
+  display: none;
+}
+
+.button > .spinner.is-hidden {
+  display: none;
+}
+
+.pictures_list {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  justify-content: space-around;
+}
+
+.pictures_list img {
+  display: block;
+  width: 350px;
+  height: 180px;
+  object-fit: cover;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 330px;
+}
