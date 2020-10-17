@@ -60,6 +60,11 @@ li {
   width: 350px;
   height: 180px;
   object-fit: cover;
+  transition: all 0.2s linear;
+}
+
+.pictures_list img:hover {
+  transform: scale(1.02);
 }
 
 .stats {
@@ -69,3 +74,4 @@ li {
   align-items: center;
   width: 330px;
 }
+

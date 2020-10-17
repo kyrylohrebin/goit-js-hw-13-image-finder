@@ -7,6 +7,7 @@ import fetchAPI from './js/search.js';
 import refs from './js/refs.js';
 import loadMoreBtn from './js/loadMore.js';
 import * as basicLightbox from 'basiclightbox';
+import './scss/basicLightbox.scss';
 
 refs.searchForm.addEventListener('submit', event => {
   event.preventDefault();
@@ -49,7 +50,9 @@ function clearGallery() {
 refs.picturesList.addEventListener('click', openLargeImage);
 
 function openLargeImage(event) {
-
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
   const largeImageURL = event.target.dataset.source;
   openModal(largeImageURL);
 }
