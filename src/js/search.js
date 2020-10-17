@@ -6,7 +6,7 @@ const apiKey = '18662312-a5f7d9a00f5eb78409595edb4';
 
 export default {
   searchQuery: '',
-  pageNumber: 1,
+  pageNumber: '',
 
   async fetchPictures() {
     try {
@@ -23,8 +23,8 @@ export default {
       if (!hits.length) return;
       if (!total) return error('Wrong query! Please try again');
       return { hits, total };
-    } catch (error) {
-      throw error;
+    } catch (err) {
+      error();
     }
   },
   resetPage() {

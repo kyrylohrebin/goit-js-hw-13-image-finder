@@ -19,9 +19,7 @@ refs.searchForm.addEventListener('submit', event => {
 
     fetchAPI.resetPage();
     fetchPictures();
-    form.reset();
   }
-
 });
 
 refs.loadMoreBtn.addEventListener('click', fetchPictures);
@@ -30,33 +28,29 @@ function fetchPictures() {
   loadMoreBtn.disable();
 
   fetchAPI.fetchPictures().then(pictures => {
-/*       if (!pictures) return error('Wrong query! Please try again'); */
+      if (!pictures) return error('Wrong query! Please try again');
       updatePicturesMarkup(pictures);
       loadMoreBtn.show();
       loadMoreBtn.enable();
-/*       fetchAPI.incrementPage(); */
+      fetchAPI.incrementPage();
 
       window.scrollTo({
         top: document.documentElement.offsetHeight,
         behavior: 'smooth',
       });
     })
-/*     .catch(
-      error({
-        title: 'Wrong query! Please try again',
-      }),) */
+
 }
 
 function clearGallery() {
   refs.picturesList.innerHTML = '';
 }
 
-refs.picturesList.addEventListener('click', openLargeImgage);
+refs.picturesList.addEventListener('click', openLargeImage);
 
-function openLargeImgage(event) {
+function openLargeImage(event) {
 
   const largeImageURL = event.target.dataset.source;
-/*   console.log(event.target.dataset.source) */
   openModal(largeImageURL);
 }
 
