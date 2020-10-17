@@ -19,13 +19,12 @@ export default {
       };
 
       const response = await fetch(url, options);
-      const { hits } = await response.json();
-
-      return hits;
-    } catch (err) {
-      error({
-        title: 'Wrong query! Please try again',
-      });
+      const { hits, total } = await response.json();
+      if (!hits.length) return;
+      if (!total) return error('Wrong query! Please try again');
+      return { hits, total };
+    } catch (error) {
+      throw error;
     }
   },
   resetPage() {

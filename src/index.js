@@ -6,8 +6,7 @@ import updatePicturesMarkup from './js/updatePicturesMarkup.js';
 import fetchAPI from './js/search.js';
 import refs from './js/refs.js';
 import loadMoreBtn from './js/loadMore.js';
-
-refs.loadMoreBtn.addEventListener('click', fetchPictures);
+import * as basicLightbox from 'basiclightbox';
 
 refs.searchForm.addEventListener('submit', event => {
   event.preventDefault();
@@ -15,36 +14,52 @@ refs.searchForm.addEventListener('submit', event => {
   const form = event.currentTarget;
   fetchAPI.query = form.elements.query.value;
 
-  clearGallery();
+  if (fetchAPI.query !== '') {
+    clearGallery();
 
-  fetchAPI.fetchPictures();
-  fetchPictures();
-  form.reset();
+    fetchAPI.resetPage();
+    fetchPictures();
+    form.reset();
+  }
+
 });
 
+refs.loadMoreBtn.addEventListener('click', fetchPictures);
 
 function fetchPictures() {
   loadMoreBtn.disable();
 
   fetchAPI.fetchPictures().then(pictures => {
-      if (!pictures) return error('Wrong query! Please try again');
+/*       if (!pictures) return error('Wrong query! Please try again'); */
       updatePicturesMarkup(pictures);
       loadMoreBtn.show();
       loadMoreBtn.enable();
-      fetchAPI.incrementPage();
+/*       fetchAPI.incrementPage(); */
 
       window.scrollTo({
         top: document.documentElement.offsetHeight,
         behavior: 'smooth',
       });
     })
-    .catch(pnError => {
+/*     .catch(
       error({
         title: 'Wrong query! Please try again',
-      });
-});
+      }),) */
 }
 
 function clearGallery() {
   refs.picturesList.innerHTML = '';
+}
+
+refs.picturesList.addEventListener('click', openLargeImgage);
+
+function openLargeImgage(event) {
+
+  const largeImageURL = event.target.dataset.source;
+/*   console.log(event.target.dataset.source) */
+  openModal(largeImageURL);
+}
+
+function openModal(url) {
+  basicLightbox.create(`<img width="1600" height="900" src="${url}">`).show();
 }
