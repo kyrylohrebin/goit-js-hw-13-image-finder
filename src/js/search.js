@@ -1,6 +1,7 @@
 import { error } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
+import loadMoreBtn from './loadMore.js';
 
 const apiKey = '18662312-a5f7d9a00f5eb78409595edb4';
 
@@ -20,7 +21,11 @@ export default {
 
       const response = await fetch(url, options);
       const { hits, total } = await response.json();
-      if (!hits.length) return;
+      if (!hits.length) {
+        loadMoreBtn.disable();
+        loadMoreBtn.hide();
+        return;
+      }
       if (!total) return error('Wrong query! Please try again');
       return { hits, total };
     } catch (err) {
